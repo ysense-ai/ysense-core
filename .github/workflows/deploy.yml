@@ -30,15 +30,41 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install fastapi uvicorn streamlit sqlalchemy pydantic python-multipart email-validator
           
       - name: Build documentation
         run: |
-          echo "Building documentation site..."
-          mkdir -p docs
-          cp README.md docs/
-          cp DEFENSIVE_PUBLICATION.md docs/
-          cp CNAME docs/
+          echo "# YSense™ AI Attribution Infrastructure" > index.md
+          echo "" >> index.md
+          echo "🚀 **Revolutionary AI Attribution Technology Protected by Defensive Publication**" >> index.md
+          echo "" >> index.md
+          echo "[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17072168.svg)](https://doi.org/10.5281/zenodo.17072168)" >> index.md
+          echo "" >> index.md
+          echo "## About YSense™" >> index.md
+          echo "" >> index.md
+          echo "YSense™ is the world's first comprehensive AI attribution infrastructure, featuring the groundbreaking Five-Layer Perception Toolkit™ and Z Protocol v2.0 for multi-agent orchestration." >> index.md
+          echo "" >> index.md
+          echo "### 🎯 Our Mission" >> index.md
+          echo "Build ethical, transparent AI systems that properly attribute content sources and enable fair compensation for creators." >> index.md
+          echo "" >> index.md
+          echo "### 🔬 Core Technologies" >> index.md
+          echo "- **Five-Layer Perception Toolkit™**: Multi-dimensional content analysis" >> index.md
+          echo "- **Z Protocol v2.0**: Advanced consent and attribution management" >> index.md
+          echo "- **LangChain Integration**: Seamless AI pipeline compatibility" >> index.md
+          echo "- **Academic-First Design**: Built for research collaboration" >> index.md
+          echo "" >> index.md
+          echo "### 🌟 Creator" >> index.md
+          echo "**Alton Lee Wei Bin** - Original inventor and maintainer" >> index.md
+          echo "- Location: Teluk Intan, Malaysia" >> index.md
+          echo "- Defensive Publication: DOI [10.5281/zenodo.17072168](https://doi.org/10.5281/zenodo.17072168)" >> index.md
+          echo "" >> index.md
+          echo "### 📧 Contact" >> index.md
+          echo "- Website: [ysenseai.org](https://ysenseai.org)" >> index.md
+          echo "- Email: contact@ysenseai.org" >> index.md
+          echo "- Academic: academic@ysenseai.org" >> index.md
+          echo "" >> index.md
+          echo "---" >> index.md
+          echo "*Protected by Defensive Publication • Apache 2.0 Licensed • Built for Academic Excellence*" >> index.md
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +72,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './docs'
+          path: '.'
           
   deploy:
     environment:
