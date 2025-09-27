@@ -1,0 +1,21 @@
+# Global owners
+* @creator35lwb-web @ysense-ai/core-team
+
+# Core AI algorithms - requires security review
+/src/core/ @ysense-ai/core-team @ysense-ai/security-team
+/src/protocols/ @ysense-ai/core-team @ysense-ai/ai-team
+
+# Enterprise features
+/src/enterprise/ @ysense-ai/enterprise-team
+
+# Z Protocol implementation
+/api/ @creator35lwb-web @ysense-ai/core-team
+
+# Documentation
+/docs/ @ysense-ai/docs-team @ysense-ai/core-team
+README.md @creator35lwb-web
+*.md @creator35lwb-web
+
+# Legal and licensing
+LICENSE* @creator35lwb-web @ysense-ai/legal-team
+DEFENSIVE_PUBLICATION.md @creator35lwb-web

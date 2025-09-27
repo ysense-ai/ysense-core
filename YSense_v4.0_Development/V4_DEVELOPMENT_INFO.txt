@@ -1,0 +1,13 @@
+YSense Platform v4.0 Development Environment 
+Created: Fri 09/26/2025 23:44:40.41 
+Base: YSense Platform v3.0 
+ 
+Development Configuration: 
+- Backend Port: 8004 
+- Frontend Port: 8502 
+- Database: ysense_v4_dev.db 
+ 
+To start v4.0 development: 
+1. cd YSense_v4.0_Development 
+2. python -m uvicorn src.main:app --port 8004 
+3. streamlit run streamlit_app.py --server.port 8502 
