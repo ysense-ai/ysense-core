@@ -64,3 +64,7 @@ backup/
 **/api_keys.txt
 **/secrets.txt
 **/.env*
+
+# Confidential Files
+SAMPLE SHOWCASE/
+**/SAMPLE SHOWCASE/**
