@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 
 from src.models import User, get_session
 from src.config import Config
-from api.auth import get_current_user
+from api.auth import get_current_user, generate_crypto_key, generate_z_protocol_consent_key
 
 router = APIRouter()
 
@@ -188,7 +188,7 @@ def log_recovery_attempt(db: Session, user_id: str, recovery_type: str,
 
 # ==================== API Endpoints ====================
 
-@router.post("/recover-crypto-key", response_model=KeyRecoveryResponse)
+@router.post("/request-crypto-key", response_model=KeyRecoveryResponse)
 async def recover_crypto_key(recovery_request: KeyRecoveryRequest, request: Request):
     """Recover crypto key via email"""
     
