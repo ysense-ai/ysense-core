@@ -1,0 +1,58 @@
+# YSense™ Platform v4.1 Environment Configuration
+# Copy this file to .env and fill in your actual values
+
+# =============================================================================
+# AI API KEYS
+# =============================================================================
+
+# QWEN API (Alibaba Cloud)
+QWEN_API_KEY=your_qwen_api_key_here
+QWEN_API_URL=https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
+
+# Anthropic API (Claude)
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+
+# =============================================================================
+# SECURITY KEYS
+# =============================================================================
+
+# JWT Secret Key (generate a random string)
+JWT_SECRET_KEY=your_jwt_secret_key_here
+
+# Encryption Key (generate a random string)
+ENCRYPTION_KEY=your_encryption_key_here
+
+# =============================================================================
+# DATABASE CONFIGURATION
+# =============================================================================
+
+# Database Path
+DATABASE_PATH=ysense_v41.db
+
+# =============================================================================
+# EMAIL CONFIGURATION
+# =============================================================================
+
+# SMTP Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=contact@ysenseai.org
+SMTP_PASSWORD=your_email_password_here
+
+# Email Addresses
+FROM_EMAIL=contact@ysenseai.org
+SUPPORT_EMAIL=support@ysenseai.org
+ADMIN_EMAIL=admin@ysenseai.org
+
+# =============================================================================
+# PLATFORM CONFIGURATION
+# =============================================================================
+
+# Platform URL (for production)
+PLATFORM_URL=https://ysenseai.org
+
+# Debug Mode
+DEBUG=True
+
+
+
