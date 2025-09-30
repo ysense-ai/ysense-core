@@ -353,29 +353,6 @@ docs/.doctrees/
 site/
 mkdocs/site/
 
-# ===== Media Files (Optional) =====
-# Uncomment if you don't want to track large media
-# *.mp4
-# *.avi
-# *.mov
-# *.mp3
-# *.wav
-
-# ===== Miscellaneous =====
-# Jupyter Notebooks checkpoints
-.ipynb_checkpoints/
-
-# Python virtual environments
-pip-selfcheck.json
-
-# Coverage reports
-htmlcov/
-.coverage
-.coverage.*
-
-# Profiling data
-*.prof
-
 # ===== Keep These Files =====
 # Even if they match patterns above
 !.gitignore
