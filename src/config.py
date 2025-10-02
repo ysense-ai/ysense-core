@@ -33,9 +33,9 @@ class Config:
     # ==================== Security ====================
     SECRET_KEY = os.getenv('SECRET_KEY', secrets.token_hex(32))
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', secrets.token_hex(32))
-    JWT_ALGORITHM = "HS256"
-    JWT_EXPIRATION_HOURS = 24
     ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY', secrets.token_hex(32))
+    JWT_ALGORITHM = os.getenv('JWT_ALGORITHM', "HS256")
+    JWT_EXPIRATION_HOURS = int(os.getenv('JWT_EXPIRATION_HOURS', '24'))
     
     # ==================== Database ====================
     USE_POSTGRESQL = os.getenv('USE_POSTGRESQL', 'false').lower() == 'true'

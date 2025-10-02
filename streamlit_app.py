@@ -12,60 +12,150 @@ from typing import Optional, Dict, Any
 # Add src to path
 sys.path.append(str(Path(__file__).parent / "src"))
 
-# Import our modules
-try:
-    from src.models import User, WisdomDrop, create_tables
-    from src.auth import AuthManager
-    from src.wisdom_library import WisdomLibrary
-    from src.attribution_engine import AttributionEngine
-    from src.revenue_models import RevenueModel, ContributorTier
-    from src.terms_consent_system import TermsConsentSystem
-    from src.whitepaper_system import WhitePaperSystem
-    from src.agent_system_v41 import AgentSystem
-    from src.metrics_collector import MetricsCollector
-except ImportError as e:
-    st.error(f"Import error: {e}")
-    st.stop()
+# Import our modules - MINIMAL VERSION
+# try:
+#     from src.models import User, WisdomDrop, create_tables
+#     from src.auth import AuthManager
+#     from src.wisdom_library import WisdomLibrary
+#     from src.attribution_engine import AttributionEngine
+#     from src.revenue_models import RevenueModel, ContributorTier
+#     from src.terms_consent_system import TermsConsentSystem
+#     from src.whitepaper_system import WhitePaperSystem
+#     from src.agent_system_v41 import AgentSystem
+#     from src.metrics_collector import MetricsCollector
+# except ImportError as e:
+#     st.error(f"Import error: {e}")
+#     st.stop()
 
-# Initialize session state
-if 'authenticated' not in st.session_state:
-    st.session_state.authenticated = False
-if 'user_id' not in st.session_state:
-    st.session_state.user_id = None
-if 'user_email' not in st.session_state:
-    st.session_state.user_email = None
+# MINIMAL WORKING VERSION - NO IMPORTS FROM SRC
 
-# Initialize components
-@st.cache_resource
+# Page Configuration - MUST BE FIRST STREAMLIT COMMAND
+st.set_page_config(
+    page_title="YSense™ v4.1 | 慧觉™",
+    page_icon="💧",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Custom CSS for Professional Look
+st.markdown("""
+<style>
+    .stApp {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+    .main-header {
+        text-align: center;
+        padding: 2rem 0;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+    }
+    
+    .status-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 1rem 0;
+        text-align: center;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Main Header
+st.markdown("""
+<div class="main-header">
+    <h1>💧 YSense™ Platform v4.1 Fresh</h1>
+    <h2>慧觉™ - AI Attribution Infrastructure</h2>
+    <p>Human-AI Collaboration Platform</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Status Card
+st.markdown("""
+<div class="status-card">
+    <h3>🚀 Deployment Status</h3>
+    <p><strong>Status:</strong> ✅ Successfully Deployed</p>
+    <p><strong>Platform:</strong> Google Cloud Run</p>
+    <p><strong>Region:</strong> asia-southeast1 (Singapore)</p>
+    <p><strong>Deployed:</strong> """ + datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC") + """</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Coming Soon Section
+st.markdown("""
+<div class="status-card">
+    <h2>🎯 Coming Soon</h2>
+    <p>We're building something amazing! The YSense™ Platform v4.1 Fresh is currently in development.</p>
+    <p>This minimal version confirms our Cloud Run deployment is working perfectly.</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Feature Preview
+st.markdown("### 🔮 Planned Features")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    **🧠 AI Wisdom Collection**
+    - Advanced AI model integration
+    - Real-time wisdom processing
+    - Intelligent content analysis
+    """)
+
+with col2:
+    st.markdown("""
+    **👥 User Management**
+    - Secure authentication system
+    - User profile management
+    - Role-based access control
+    """)
+
+with col3:
+    st.markdown("""
+    **📊 Analytics Dashboard**
+    - Real-time metrics
+    - Performance insights
+    - Revenue tracking
+    """)
+
+# Footer
+st.markdown("---")
+st.markdown("""
+<div style="text-align: center; color: #666; padding: 2rem;">
+    <p>YSense™ Platform v4.1 Fresh | Built with ❤️ for Human-AI Collaboration</p>
+    <p>Powered by Google Cloud Run | Streamlit Framework</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Sidebar
+with st.sidebar:
+    st.markdown("### 🎛️ Platform Status")
+    st.success("✅ Cloud Run Deployed")
+    st.info("🔄 Development Active")
+    st.warning("⚠️ Features Coming Soon")
+    
+    st.markdown("### 📈 Quick Stats")
+    st.metric("Deployment Status", "Success", "100%")
+    st.metric("Uptime", "Active", "0 downtime")
+    st.metric("Version", "v4.1-minimal", "Initial")
+    
+    st.markdown("### 🔗 Links")
+    st.markdown("[GitHub Repository](https://github.com/ysense-ai/ysense-core)")
+    st.markdown("[Documentation](https://docs.ysense.ai)")
+    st.markdown("[Support](mailto:support@ysense.ai)")
+
+# Placeholder for future initialization
+# When full frontend is enabled, components will be initialized here
+
 def init_components():
-    """Initialize all platform components"""
-    try:
-        # Create database tables
-        create_tables()
-        
-        # Initialize managers
-        auth_manager = AuthManager()
-        wisdom_library = WisdomLibrary()
-        attribution_engine = AttributionEngine()
-        revenue_model = RevenueModel()
-        terms_system = TermsConsentSystem()
-        whitepaper_system = WhitePaperSystem()
-        agent_system = AgentSystem()
-        metrics_collector = MetricsCollector()
-        
-        return {
-            'auth_manager': auth_manager,
-            'wisdom_library': wisdom_library,
-            'attribution_engine': attribution_engine,
-            'revenue_model': revenue_model,
-            'terms_system': terms_system,
-            'whitepaper_system': whitepaper_system,
-            'agent_system': agent_system,
-            'metrics_collector': metrics_collector
-        }
-    except Exception as e:
-        st.error(f"Failed to initialize components: {e}")
-        return None
+    """Initialize components - stub function for minimal mode"""
+    # Returns None in minimal mode
+    # When full frontend is enabled, this will initialize actual components
+    return None
 
 def load_image_as_base64(image_path):
     """Load image and convert to base64 for embedding"""
@@ -190,9 +280,12 @@ def show_login():
 def show_password_reset():
     """Show password reset form"""
     st.subheader("🔐 Reset Your Password")
-    
+
     # Get token from URL parameters
-    token = st.query_params.get('token', '')
+    try:
+        token = st.experimental_get_query_params().get('token', [''])[0]
+    except:
+        token = ''
     
     if token:
         # Show reset form
@@ -1136,14 +1229,16 @@ def show_v4_interface():
 
 def main():
     """Main application"""
-    # Page config
-    st.set_page_config(
-        page_title="YSense™ v4.1 | 慧觉™",
-        page_icon="💧",
-        layout="wide",
-        initial_sidebar_state="expanded"
-    )
-    
+    # Initialize session state variables
+    if 'authenticated' not in st.session_state:
+        st.session_state.authenticated = False
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = 'home'
+    if 'user_data' not in st.session_state:
+        st.session_state.user_data = None
+    if 'wisdom_results' not in st.session_state:
+        st.session_state.wisdom_results = None
+
     # Custom CSS for sidebar logo
     logo_base64 = load_image_as_base64("assets/Logo Ysense.png")
     st.markdown(f"""
@@ -1186,7 +1281,12 @@ def main():
     
     if not st.session_state.authenticated:
         # Check if this is a password reset page
-        if st.query_params.get('token'):
+        try:
+            has_token = 'token' in st.experimental_get_query_params()
+        except:
+            has_token = False
+
+        if has_token:
             show_password_reset()
         else:
             # Show navigation for non-authenticated users

@@ -30,8 +30,8 @@ class MethodologyCoreEngine:
         self.vibe_resonance = {}
         self.full_analysis = {}
         
-    def process_user_story_with_vibe(self, user_story: str, user_vibe_data: Dict,
-                                   cultural_context: str = "", target_audience: str = "", 
+    async def process_user_story_with_vibe(self, user_story: str, user_vibe_data: Dict,
+                                   cultural_context: str = "", target_audience: str = "",
                                    priority_focus: str = "Innovation", analysis_depth: str = "Standard") -> Dict:
         """Process user story with user-defined vibe data"""
         
@@ -40,7 +40,7 @@ class MethodologyCoreEngine:
         
         try:
             # Stage 1: Extract Experiential Data
-            experiential_data = self._extract_experiential_data(
+            experiential_data = await self._extract_experiential_data(
                 user_story, cultural_context, target_audience, priority_focus, analysis_depth
             )
             
@@ -48,8 +48,8 @@ class MethodologyCoreEngine:
             vibe_resonance = user_vibe_data
             
             # Stage 3: Full AI Analysis with real API calls
-            full_analysis = self._comprehensive_ai_analysis_real(
-                user_story, experiential_data, vibe_resonance, 
+            full_analysis = await self._comprehensive_ai_analysis_real(
+                user_story, experiential_data, vibe_resonance,
                 cultural_context, target_audience, priority_focus, analysis_depth
             )
             
@@ -63,7 +63,7 @@ class MethodologyCoreEngine:
                     "stage_2_vibe_resonance": vibe_resonance,
                     "stage_3_full_analysis": full_analysis
                 },
-                "executive_summary": self._generate_executive_summary(
+                "executive_summary": await self._generate_executive_summary(
                     experiential_data, vibe_resonance, full_analysis
                 ),
                 "z_protocol_score": self._calculate_z_protocol_score(
@@ -89,7 +89,7 @@ class MethodologyCoreEngine:
         
         try:
             # Stage 1: Extract Experiential Data
-            experiential_data = self._extract_experiential_data(
+            experiential_data = await self._extract_experiential_data(
                 user_story, cultural_context, target_audience, priority_focus, analysis_depth
             )
             
@@ -99,8 +99,8 @@ class MethodologyCoreEngine:
             )
             
             # Stage 3: Full AI Analysis
-            full_analysis = self._comprehensive_ai_analysis(
-                user_story, experiential_data, vibe_resonance, 
+            full_analysis = await self._comprehensive_ai_analysis(
+                user_story, experiential_data, vibe_resonance,
                 cultural_context, target_audience, priority_focus, analysis_depth
             )
             
@@ -114,7 +114,7 @@ class MethodologyCoreEngine:
                     "stage_2_vibe_resonance": vibe_resonance,
                     "stage_3_full_analysis": full_analysis
                 },
-                "executive_summary": self._generate_executive_summary(
+                "executive_summary": await self._generate_executive_summary(
                     experiential_data, vibe_resonance, full_analysis
                 ),
                 "z_protocol_score": self._calculate_z_protocol_score(
@@ -130,8 +130,8 @@ class MethodologyCoreEngine:
         except Exception as e:
             return self._handle_error(e, user_story)
     
-    def _extract_experiential_data(self, user_story: str, cultural_context: str,
-                                 target_audience: str, priority_focus: str, 
+    async def _extract_experiential_data(self, user_story: str, cultural_context: str,
+                                 target_audience: str, priority_focus: str,
                                  analysis_depth: str) -> Dict:
         """Stage 1: Extract experiential data from user story"""
         
@@ -164,7 +164,7 @@ class MethodologyCoreEngine:
         """
         
         try:
-            response = self.anthropic_client.generate_response(extraction_prompt)
+            response = await self.anthropic_client.generate_response(extraction_prompt)
             experiential_data = self._parse_json_response(response)
             
             # Add metadata
@@ -232,7 +232,7 @@ class MethodologyCoreEngine:
         except Exception as e:
             return self._get_fallback_vibe_data(user_story, e)
     
-    def _comprehensive_ai_analysis_real(self, user_story: str, experiential_data: Dict,
+    async def _comprehensive_ai_analysis_real(self, user_story: str, experiential_data: Dict,
                                        vibe_resonance: Dict, cultural_context: str,
                                        target_audience: str, priority_focus: str,
                                        analysis_depth: str) -> Dict:
@@ -296,16 +296,16 @@ class MethodologyCoreEngine:
             print("🔄 Attempting real AI analysis...")
             
             # Use Anthropic for primary analysis
-            anthropic_response = self.anthropic_client.generate_response(analysis_prompt)
+            anthropic_response = await self.anthropic_client.generate_response(analysis_prompt)
             print(f"✅ Anthropic response received: {len(anthropic_response)} characters")
             
             # Use QWEN for secondary analysis
             qwen_response = self.qwen_client.generate_response(analysis_prompt)
             print(f"✅ QWEN response received: {len(qwen_response)} characters")
-            
+
             # Combine and synthesize responses
-            combined_analysis = self._synthesize_ai_responses(
-                anthropic_response, qwen_response, user_story, 
+            combined_analysis = await self._synthesize_ai_responses(
+                anthropic_response, qwen_response, user_story,
                 experiential_data, vibe_resonance
             )
             
@@ -317,7 +317,7 @@ class MethodologyCoreEngine:
             print("🔄 Falling back to enhanced mock analysis...")
             return self._get_enhanced_fallback_analysis(user_story, experiential_data, vibe_resonance, e)
     
-    def _comprehensive_ai_analysis(self, user_story: str, experiential_data: Dict,
+    async def _comprehensive_ai_analysis(self, user_story: str, experiential_data: Dict,
                                    vibe_resonance: Dict, cultural_context: str,
                                    target_audience: str, priority_focus: str,
                                    analysis_depth: str) -> Dict:
@@ -378,12 +378,12 @@ class MethodologyCoreEngine:
         
         try:
             # Use both QWEN and Anthropic for comprehensive analysis
-            anthropic_response = self.anthropic_client.generate_response(analysis_prompt)
+            anthropic_response = await self.anthropic_client.generate_response(analysis_prompt)
             qwen_response = self.qwen_client.generate_response(analysis_prompt)
-            
+
             # Combine and synthesize responses
-            combined_analysis = self._synthesize_ai_responses(
-                anthropic_response, qwen_response, user_story, 
+            combined_analysis = await self._synthesize_ai_responses(
+                anthropic_response, qwen_response, user_story,
                 experiential_data, vibe_resonance
             )
             
@@ -392,8 +392,8 @@ class MethodologyCoreEngine:
         except Exception as e:
             return self._get_fallback_analysis(user_story, experiential_data, vibe_resonance, e)
     
-    def _synthesize_ai_responses(self, anthropic_response: str, qwen_response: str,
-                                user_story: str, experiential_data: Dict, 
+    async def _synthesize_ai_responses(self, anthropic_response: str, qwen_response: str,
+                                user_story: str, experiential_data: Dict,
                                 vibe_resonance: Dict) -> Dict:
         """Synthesize responses from both AI models"""
         
@@ -426,12 +426,12 @@ class MethodologyCoreEngine:
         """
         
         try:
-            response = self.anthropic_client.generate_response(synthesis_prompt)
+            response = await self.anthropic_client.generate_response(synthesis_prompt)
             return self._parse_json_response(response)
         except Exception as e:
             return self._create_synthesis_fallback(anthropic_response, qwen_response, e)
     
-    def _generate_executive_summary(self, experiential_data: Dict, 
+    async def _generate_executive_summary(self, experiential_data: Dict,
                                   vibe_resonance: Dict, full_analysis: Dict) -> str:
         """Generate executive summary from all stages"""
         
@@ -453,7 +453,7 @@ class MethodologyCoreEngine:
         """
         
         try:
-            return self.anthropic_client.generate_response(summary_prompt)
+            return await self.anthropic_client.generate_response(summary_prompt)
         except Exception as e:
             return f"Executive summary generation failed: {e}"
     

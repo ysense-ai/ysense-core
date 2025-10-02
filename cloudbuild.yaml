@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia-southeast1-docker.pkg.dev/ysense-platform-v4-1/ysense-v41/ysense-v41-fresh', '-f', 'Dockerfile.v41', '.']
+images:
+- 'asia-southeast1-docker.pkg.dev/ysense-platform-v4-1/ysense-v41/ysense-v41-fresh'

@@ -18,8 +18,13 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY . .
+# Copy application code - copy specific files/folders only
+COPY src/ ./src/
+COPY assets/ ./assets/
+COPY *.py ./
+COPY *.md ./
+COPY *.txt ./
+COPY *.sh ./
 
 # Create database directory
 RUN mkdir -p database
@@ -40,4 +45,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Run the application
 CMD ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+
 

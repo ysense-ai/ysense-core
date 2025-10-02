@@ -105,3 +105,5 @@ if __name__ == "__main__":
     print(f"📍 Location: {database_folder}")
     print(f"🔒 All database files are now organized in the dedicated folder")
 
+
+

@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(if exist \"package.json\" type package.json)",
+      "Bash(if exist \"requirements.txt\" type requirements.txt)",
+      "Bash(python -c \"import secrets; print(''SECRET_KEY='' + secrets.token_hex(32)); print(''JWT_SECRET_KEY='' + secrets.token_hex(32)); print(''ENCRYPTION_KEY='' + secrets.token_hex(32))\")",
+      "Bash(python:*)",
+      "Bash(timeout 5 python:*)",
+      "Bash(robocopy:*)",
+      "Bash(xcopy:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Read(//c/Users/weibi/OneDrive/Desktop/**)",
+      "Bash(gcloud services enable:*)",
+      "Bash(gcloud secrets create:*)",
+      "Bash(gcloud secrets versions add:*)",
+      "Bash(gcloud builds submit:*)",
+      "Bash(gcloud projects add-iam-policy-binding:*)",
+      "Bash(gcloud artifacts repositories create:*)",
+      "Bash(gcloud run deploy:*)",
+      "Bash(gcloud projects get-iam-policy:*)",
+      "Bash(gcloud artifacts repositories add-iam-policy-binding:*)",
+      "Bash(timeout:*)",
+      "Bash(gcloud secrets add-iam-policy-binding:*)",
+      "Bash(gcloud run services add-iam-policy-binding:*)",
+      "Bash(curl -s -o nul -w \"%{http_code}\" https://ysense-v41-690976799907.asia-southeast1.run.app)",
+      "Bash(curl:*)",
+      "Bash(gcloud run domain-mappings create:*)",
+      "Bash(gcloud run services update:*)",
+      "Bash(git remote get-url:*)",
+      "Bash(git config:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

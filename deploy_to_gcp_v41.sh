@@ -9,7 +9,7 @@
 set -e
 
 # Configuration - UPDATE THESE VALUES
-PROJECT_ID="ysense-platform-v41"  # Your GCP Project ID
+PROJECT_ID="ysense-platform-v4-1"  # Your GCP Project ID
 REGION="asia-southeast1"           # Singapore region (closest to you)
 SERVICE_NAME="ysense-v41-fresh"    # Cloud Run service name
 IMAGE_NAME="gcr.io/$PROJECT_ID/ysense-v41-fresh"
@@ -40,7 +40,7 @@ echo "SECRET_KEY=your_secret_key_here" | gcloud secrets create ysense-secret-key
 
 # 4. Build and deploy Streamlit app
 echo "🏗️ Building YSense™ v4.1 Fresh image..."
-gcloud builds submit --tag $IMAGE_NAME --file Dockerfile.frontend .
+gcloud builds submit --tag $IMAGE_NAME --file Dockerfile.v41 .
 
 echo "🚀 Deploying to Cloud Run..."
 gcloud run deploy $SERVICE_NAME \
@@ -74,4 +74,6 @@ echo "3. Set up custom domain (optional)"
 echo "4. Configure monitoring and alerts"
 echo ""
 echo "🔗 Access your platform at: $SERVICE_URL"
+
+
 

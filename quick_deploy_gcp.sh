@@ -68,3 +68,5 @@ echo "3. Set up custom domain (optional)"
 echo ""
 echo "🔗 Access your platform: $SERVICE_URL"
 
+
+
