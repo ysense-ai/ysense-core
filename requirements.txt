@@ -29,6 +29,7 @@ requests==2.31.0
 # Data Processing
 pandas==2.1.4
 numpy==1.26.2
+PyPDF2==3.0.1
 
 # Scheduler for orchestrator
 apscheduler==3.10.4
@@ -49,6 +50,9 @@ pytz==2023.3
 # UI Framework
 streamlit==1.29.0
 streamlit-extras==0.3.6
+
+# Google Cloud Services
+google-cloud-firestore==2.14.0
 
 # Remove these - they don't exist as packages
 # QWEN==1.3.8  # This is not a real package
