@@ -1417,6 +1417,36 @@ def show_v4_interface():
             pass
 
         if user_story.strip():
+            # Create user vibe data BEFORE try block to ensure it's always available in fallback
+            user_vibe_data = {
+                "primary_vibe_word": {
+                    "word": primary_vibe or "Connection",
+                    "resonance": primary_description or "User-defined primary vibe",
+                    "story_connection": "User input",
+                    "person_insight": "Personal resonance",
+                    "future_guidance": "User-defined guidance"
+                },
+                "secondary_resonance_word": {
+                    "word": secondary_vibe or "Growth",
+                    "resonance": secondary_description or "User-defined secondary resonance",
+                    "story_connection": "User input",
+                    "person_insight": "Personal resonance",
+                    "future_guidance": "User-defined guidance"
+                },
+                "tertiary_essence_word": {
+                    "word": tertiary_vibe or "Wisdom",
+                    "resonance": tertiary_description or "User-defined tertiary essence",
+                    "story_connection": "User input",
+                    "person_insight": "Personal resonance",
+                    "future_guidance": "User-defined guidance"
+                },
+                "energy_level": 8,
+                "authenticity_score": 9,
+                "resonance_strength": 9,
+                "potential_impact": 8,
+                "user_defined": True
+            }
+
             with st.spinner("🔄 Processing through 3-stage methodology..."):
                 try:
                     # Import the new methodology engine
@@ -1425,37 +1455,7 @@ def show_v4_interface():
                     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
                     from src.methodology_core_engine import methodology_engine
                     from src.demo_mode_config import live_demo_mode
-                    
-                    # Create user vibe data
-                    user_vibe_data = {
-                        "primary_vibe_word": {
-                            "word": primary_vibe or "Connection",
-                            "resonance": primary_description or "User-defined primary vibe",
-                            "story_connection": "User input",
-                            "person_insight": "Personal resonance",
-                            "future_guidance": "User-defined guidance"
-                        },
-                        "secondary_resonance_word": {
-                            "word": secondary_vibe or "Growth", 
-                            "resonance": secondary_description or "User-defined secondary resonance",
-                            "story_connection": "User input",
-                            "person_insight": "Personal resonance",
-                            "future_guidance": "User-defined guidance"
-                        },
-                        "tertiary_essence_word": {
-                            "word": tertiary_vibe or "Wisdom",
-                            "resonance": tertiary_description or "User-defined tertiary essence",
-                            "story_connection": "User input", 
-                            "person_insight": "Personal resonance",
-                            "future_guidance": "User-defined guidance"
-                        },
-                        "energy_level": 8,
-                        "authenticity_score": 9,
-                        "resonance_strength": 9,
-                        "potential_impact": 8,
-                        "user_defined": True
-                    }
-                    
+
                     # Process the story with user vibe data
                     import asyncio
                     results = asyncio.run(methodology_engine.process_user_story_with_vibe(
