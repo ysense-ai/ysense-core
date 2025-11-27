@@ -46,11 +46,11 @@ Check your `.env` file:
 
 ```bash
 # QWEN API (Alibaba Cloud)
-QWEN_API_KEY=sk-9f933e251786491bba21a0ddb3c417d1
+QWEN_API_KEY=your-qwen-api-key-here
 QWEN_MODEL=qwen-plus
 
 # Anthropic API (Claude)
-ANTHROPIC_API_KEY=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
+ANTHROPIC_API_KEY=your-anthropic-api-key-here
 ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
 ```
 
