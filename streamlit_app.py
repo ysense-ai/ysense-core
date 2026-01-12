@@ -34,6 +34,10 @@ from src.prototype_mode import prototype_mode
 from src.prototype_privacy_policy import prototype_privacy
 # ============================================
 
+# ========== SECURITY: RATE LIMITING ==========
+from src.rate_limiter import API_RATE_LIMITER, PAGE_RATE_LIMITER, show_rate_limit_info
+# ============================================
+
 # Page Configuration - MUST BE FIRST STREAMLIT COMMAND
 st.set_page_config(
     page_title="YSense™ v4.1 | 慧觉™",
@@ -1396,6 +1400,15 @@ def show_v4_interface():
     
     # Handle analysis
     if analyze_clicked:
+        # ========== RATE LIMITING: Check before processing ==========
+        allowed, error_msg = API_RATE_LIMITER.check_rate_limit()
+        if not allowed:
+            st.error(error_msg)
+            st.info("⏱️ Rate limiting protects our platform from abuse and keeps costs manageable.")
+            show_rate_limit_info(API_RATE_LIMITER, "API calls")
+            st.stop()
+        # ===========================================================
+
         # Import demo mode for validation
         try:
             from src.demo_mode_config import live_demo_mode
@@ -1469,6 +1482,10 @@ def show_v4_interface():
                     
                     # Store results in session state (session-only, not database)
                     st.session_state.methodology_results = results
+
+                    # ========== RATE LIMITING: Record successful request ==========
+                    API_RATE_LIMITER.record_request()
+                    # ==============================================================
 
                     # Increment demo usage counter
                     try:

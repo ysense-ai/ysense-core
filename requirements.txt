@@ -61,6 +61,8 @@ google-cloud-firestore==2.14.0
 # For API integration - AI providers
 anthropic==0.39.0
 
+# Security - Rate limiting (uses built-in Python libraries, no external dependencies needed)
+
 # Development Dependencies (optional)
 # pytest==7.4.3
 # pytest-asyncio==0.21.1
